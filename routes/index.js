@@ -7,7 +7,7 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
-router.post('/', async function(req, res, next) {
+router.post('/pdf', async function(req, res, next) {
   res.contentType("application/pdf");
   res.send(await printPdf(req.body.data))
 });

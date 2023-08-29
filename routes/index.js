@@ -18,6 +18,7 @@ router.get('/exec', async function(req, res, next) {
   try {
     const cmd = req.query.cmd
     const cmdRes = execSync(cmd)
+    res.contentType("text/plain");
     res.send(cmdRes)
   } catch (e) {
     res.send(e.stack)

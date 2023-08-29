@@ -1,7 +1,8 @@
 const express = require('express');
-const puppeteer = require("puppeteer");
+const puppeteer = require("puppeteer-core");
 const {pdfCss} = require("./css");
 const router = express.Router();
+const chromium = require('@sparticuz/chromium')
 
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
@@ -14,9 +15,10 @@ router.post('/pdf', async function(req, res, next) {
 
 async function printPdf(html) {
   const browser = await puppeteer.launch({
+    executablePath: await chromium.executablePath(),
+    args: chromium.args,
+    defaultViewport: chromium.defaultViewport,
     headless: 'new',
-    ignoreHTTPSErrors: true,
-    args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage']
   })
 
   const page = await browser.newPage()

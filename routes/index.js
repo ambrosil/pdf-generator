@@ -37,9 +37,9 @@ router.get('/env', async function(req, res, next) {
 async function printPdf(html) {
   const browser = await puppeteer.launch({
     executablePath: await chromium.executablePath(),
-    args: chromium.args,
-    defaultViewport: chromium.defaultViewport,
-    headless: 'new',
+    //args: chromium.args,
+    //defaultViewport: chromium.defaultViewport,
+    headless: true,
   })
 
   const page = await browser.newPage()

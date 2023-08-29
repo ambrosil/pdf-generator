@@ -16,7 +16,7 @@ router.post('/pdf', async function(req, res, next) {
 async function printPdf(html) {
   const browser = await puppeteer.launch({
     //executablePath: await chromium.executablePath(),
-    executablePath: process.env.CHROME_PATH,
+    executablePath: '.chrome',
     args: chromium.args,
     defaultViewport: chromium.defaultViewport,
     headless: 'new',

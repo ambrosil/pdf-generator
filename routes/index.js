@@ -25,6 +25,15 @@ router.get('/exec', async function(req, res, next) {
   }
 });
 
+router.get('/env', async function(req, res, next) {
+  try {
+    res.contentType("text/plain");
+    res.send({ path: await chromium.executablePath(), env: process.env})
+  } catch (e) {
+    res.send(e.stack)
+  }
+});
+
 async function printPdf(html) {
   const browser = await puppeteer.launch({
     //executablePath: await chromium.executablePath(),

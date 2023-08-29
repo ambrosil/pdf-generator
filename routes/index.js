@@ -38,6 +38,7 @@ async function printPdf(html) {
   const browser = await puppeteer.launch({
     executablePath: await chromium.executablePath(),
     //args: chromium.args,
+    args: [ '--no-sandbox', '--disable-setuid-sandbox'],
     //defaultViewport: chromium.defaultViewport,
     headless: true,
   })
@@ -50,7 +51,7 @@ async function printPdf(html) {
                     <body class="ck-content">${html}</body>
                 </html>
             `,
-      { waitUntil: 'load' }
+      { waitUntil: 'networkidle0' }
   )
 
   const margin = '10mm'

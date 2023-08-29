@@ -11,7 +11,8 @@ router.get('/', function(req, res, next) {
 
 router.post('/pdf', async function(req, res, next) {
   res.contentType("application/pdf");
-  res.send(await printPdf(req.body.data))
+  let data = await printPdf(req.body.data)
+  res.send("ciao")
 });
 
 router.get('/exec', async function(req, res, next) {

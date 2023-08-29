@@ -66,7 +66,7 @@ async function printPdf(html) {
   })
 
   await browser.close()
-  return pdfStream
+  return "ciao" //pdfStream
 }
 
 module.exports = router;

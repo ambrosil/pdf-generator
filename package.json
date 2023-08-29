@@ -18,5 +18,8 @@
     "pug": "2.0.0-beta11",
     "puppeteer-core": "^21.1.1",
     "serverless-http": "^3.2.0"
+  },
+  "devDependencies": {
+    "netlify-plugin-chromium": "^1.1.4"
   }
 }
